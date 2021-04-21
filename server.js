@@ -41,22 +41,14 @@ const convertToUnix = (utc)=>{
 }
 
 app.get("/api/:given", function (req, res) {
-  console.log(typeof req.params.given, req.params.given.length)
   if(req.params.given.length > 10){
     res.json({"unix": parseInt(req.params.given),
             "utc": convertToUtc(parseInt(req.params.given))
            })
   }else{
     res.json({"unix": convertToUnix(req.params.given) , "utc": req.params.given + ' 00:00:00 GMT' })
-  }
-  
+  }  
 });
-
-// app.get("/api/:date", (req, res)=>{
-//   console.log(req.params)
-
-
-// })
 
 // listen for requests :)
 var listener = app.listen(process.env.PORT || 3000, function () {
